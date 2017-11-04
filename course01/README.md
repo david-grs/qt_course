@@ -28,7 +28,7 @@ struct Item : public QObject
 
     ~Item() 
     {
-       qDebug() << "destroying" << name; 
+       qDebug() << "destroying" << objectName(); 
     }
 };
 
