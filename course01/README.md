@@ -46,10 +46,48 @@ root.dumpObjectTree();
 signal/slot
 ===========
  - publish/subsribe (1 -> N) pattern: lose coupling between objects
- - part of class definition
- - Q_OBJECT's black magic = generated code, from moc, the Meta Object Compiler
- - ... comes with some limitations, cf multiple inheritance, templates
- - toolchain:
+ - part of class declaration:
+
+```c++
+class QTimer : class QObject
+{
+  Q_OBJECT
+
+public:
+  explicit QTimer(QObject *parent = nullptr);
+  ~QTimer();
+  
+  void setInterval(int msec);
+
+public slots:
+  void start();
+  void stop();
+
+signals:
+  void timeout();
+};
+```
+
+
+```c++
+QTimer* timer = new QTimer(this);
+timer->setInternal(1000);
+
+QObject::connect(this, &Application::started, timer, &QTimer::start);
+QObject::connect(timer, &QTimer::timeout, this, [this]() { qApp->quit(); });
+```
+
+ - Q_OBJECT's black magic = generated code by MOC, the Meta Object Compiler
+ - comes with some limitations, cf multiple inheritance, templates
+ - signals, slots are just here for MOC, cf qobjectdefs.h
+
+```c++
+#define signals public
+#define slots /* nothing */
+#define emit /* nothing */
+```
+
+ - running MOC can be enabled automatically via CMake:
 
 ```c++
 set(CMAKE_AUTOMOC ON)
