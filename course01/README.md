@@ -8,13 +8,14 @@ Qt Concepts
   - MVC
 
 
-QObject:
+QObject
+======= 
+
  - base class of many Qt classes  -> needed for signals/slots, event loop, etc
  - QObject parent, QObject children: bidirectional association (convention of ctor(QObject ptr) -> tree of QObject
  - when parent is destroyed, all children are destroyed
  - cannot be copied
- - it is named: findChildren()
-
+ - it is named -> findChildren()
 
 ```c++
 struct Item : public QObject
@@ -40,3 +41,9 @@ Item* baz = new Item("baz", &root);
 
 root.dumpObjectTree();
 ```
+
+
+Signal/slot
+===========
+Publish/subsribe pattern allows lose coupling between objects
+
