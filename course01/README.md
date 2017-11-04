@@ -15,3 +15,26 @@ QObject:
  - cannot be copied
  - it is named: findChildren()
 
+
+```c++
+struct Item : public QObject
+{
+    Item(QString name, QObject* parent = nullptr) :
+        QObject(parent)
+    {
+        setObjectName(name);
+    }
+
+    ~Item() 
+    {
+       qDebug() << "destroying" << name; 
+    }
+};
+
+QObject root;
+root.setObjectName("root");
+
+new Item("item1", &root);
+new Item("item2", &root);
+new Item("item3", &root);
+```
