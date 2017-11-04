@@ -1,5 +1,5 @@
 Qt Concepts
-  - QObject and its implications (no template)
+  - QObject 
   - Signals/slots
   - Meta Objects
   - COW/implicit sharing
@@ -14,7 +14,7 @@ QObject
  - QObject parent, QObject children: bidirectional association (convention of ctor(QObject ptr) -> tree of QObject
  - when destroyed, all children are destroyed
  - cannot be copied
- - is named -> findChildren()
+ - is named -> QList<T> findChildren<T>(const QRegExp&)
  - supports signals/slots, metaobjects, qobject\_cast
 
 ```c++
@@ -73,8 +73,15 @@ signals:
 QTimer* timer = new QTimer(this);
 timer->setInternal(1000);
 
+// do NOT use the old syntax - no build time checks
+// QObject::connect(this, SIGNAL(started), timer, SLOT(start(int)));
+
 QObject::connect(this, &Application::started, timer, &QTimer::start);
-QObject::connect(timer, &QTimer::timeout, this, [this]() { qApp->quit(); });
+
+QObject::connect(timer, &QTimer::timeout, [this]() 
+{ 
+    qApp->quit(); 
+});
 ```
 
  - Q_OBJECT's black magic = generated code by MOC, the Meta Object Compiler
