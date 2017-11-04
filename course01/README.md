@@ -34,7 +34,9 @@ struct Item : public QObject
 QObject root;
 root.setObjectName("root");
 
-new Item("item1", &root);
-new Item("item2", &root);
-new Item("item3", &root);
+Item* foo = new Item("foo", &root);
+Item* bar = new Item("bar", foo);
+Item* baz = new Item("baz", &root);
+
+root.dumpObjectTree();
 ```
