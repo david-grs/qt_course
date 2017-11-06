@@ -10,11 +10,11 @@ Qt Concepts
 
 QObject
 ======= 
- - base class of many Qt classes  -> needed for signals/slots, event loop, etc
- - QObject parent, QObject children: bidirectional association (convention of ctor(QObject ptr) -> tree of QObject
- - memory management: 1. deleting the parent will delete recursively all children 2. deleting a child will unparent it -> no children on the stack!
+ - base class of many Qt classes  -> needed for signals/slots, meta info, event loop, etc
  - cannot be copied
+ - ctor(QObject ptr) -> tree of QObject -> memory management: 1. deleting the parent will delete recursively all children 2. deleting a child will unparent it -> no children on the stack!
  - is named -> QList<T> findChildren<T>(const QRegExp&)
+ - ... which is why most of the time widgets arent stored as member attributes: you dont own them, and you can find them if needed
  - supports signals/slots, metaobjects, qobject\_cast
 
 ```c++
