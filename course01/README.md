@@ -14,12 +14,12 @@ Qt
 
 QObject
 ======= 
- - base class of many Qt classes  -> needed for signals/slots, meta info, event loop, etc
+ - base class of many Qt classes, all widget classes - exceptions: containers, lightweight types
+ - offers support for memory management, signals/slots, meta info, qobject\_cast, event loop, ...
  - cannot be copied
  - ctor(QObject ptr) -> tree of QObject -> memory management: 1. deleting the parent will delete recursively all children 2. deleting a child will unparent it -> no children on the stack!
  - is named -> QList<T> findChildren<T>(const QRegExp&)
  - ... which is why most of the time widgets arent stored as member attributes: you dont own them, and you can find them if needed
- - supports signals/slots, metaobjects, qobject\_cast
 
 ```c++
 struct Item : public QObject
