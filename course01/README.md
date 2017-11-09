@@ -7,6 +7,10 @@ Qt Concepts
   - Qt Event Loop
   - MVC
 
+Qt
+==
+ - originally GUI only
+ - gained so much popularity that many developers use it for non-GUI stuff: QtCore, Xml, Json, Networking, Databases, Multimedia, ...
 
 QObject
 ======= 
