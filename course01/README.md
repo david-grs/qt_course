@@ -55,7 +55,7 @@ root.dumpObjectTree();
 
 signal/slot
 ===========
- - publish/subsribe (1 -> N) pattern: lose coupling between objects
+ - publish/subsribe (1 -> N) pattern
  - part of class declaration:
 
 ```c++
@@ -78,7 +78,6 @@ signals:
 };
 ```
 
-
 ```c++
 QTimer* timer = new QTimer(this);
 timer->setInternal(1000);
@@ -93,6 +92,13 @@ QObject::connect(timer, &QTimer::timeout, [this]()
     qApp->quit(); 
 });
 ```
+
+ - used for all GUI events, but not only!
+ - better than direct callbacks:
+   - types don't know about each other (lose coupling)
+   - solves lifetime issue on receiver end
+   - event loop integration
+   - multi threading for free
 
 
 
