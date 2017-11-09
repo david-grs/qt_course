@@ -12,6 +12,8 @@ Qt
  - originally GUI only
  - gained so much popularity that many developers use it for non-GUI stuff: QtCore, Xml, Json, Networking, Databases, Multimedia, ...
 
+
+
 QObject
 ======= 
  - base class of many Qt classes, all widget classes - exceptions: containers, lightweight types
@@ -88,9 +90,17 @@ QObject::connect(timer, &QTimer::timeout, [this]()
 });
 ```
 
- - Q_OBJECT's black magic = generated code by MOC, the Meta Object Compiler
- - comes with some limitations, cf multiple inheritance, templates
- - signals, slots are just here for MOC, cf qobjectdefs.h
+
+
+Meta Object
+===========
+ - every QObject has an associated meta object
+ - Q_OBJECT's offers the introspection: className(), inherits(), classInfo
+ - MOC, Meta Object Compiler, parses header and generates code
+ - classic c++ build: class.h + class.cc -> class.o -> exec
+ - qt build: same, + class.h -> moc_class.cc -> moc_class.o + class.o -> exec
+ - MOC parses the header file, generates stubs for signals and slots, meta info, etc.
+ - a signal is just a function! it's only here for MOC, cf qobjectdefs.h:
 
 ```c++
 #define signals public
@@ -105,7 +115,7 @@ set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
 find_package(Qt5Widgets REQUIRED)
-add_executable(app main.cc mainwindow.cc table_view.cc)
+add_executable(app main.cc widget.cc)
 
 qt5_use_modules(app Widgets)
 ```
