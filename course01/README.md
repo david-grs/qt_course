@@ -10,7 +10,7 @@ Qt Concepts
 Qt
 ==
  - originally GUI only
- - gained so much popularity that many developers use it for non-GUI stuff: QtCore, Xml, Json, Networking, Databases, Multimedia, ...
+ - gained so much popularity that many developers use it for non-GUI stuff: Core, Xml, Json, Networking, Databases, Multimedia, ...
 
 
 
@@ -42,10 +42,11 @@ Item* foo = new Item("foo", &root);
 Item* bar = new Item("bar", foo);
 Item* baz = new Item("baz", &root);
 
-root.dumpObjectTree();
+root.dumpObjectTree(); // useful for debugging!
 ```
 
  - memory management
+   - rule of thumb: every allocated with new, except the root -> no stack, no unique_ptr, etc: can cause double-free
    - deleting the parent will delete recursively all children 
    - deleting a child will unparent it -> no children on the stack!
  - named, cf QList<T> findChildren<T>(const QRegExp&)
@@ -53,8 +54,9 @@ root.dumpObjectTree();
  - cannot be copied: name? connections? parent?
 
 
-signal/slot
-===========
+
+Signals/Slots
+=============
  - publish/subsribe (1 -> N) pattern
  - part of class declaration:
 
@@ -104,8 +106,9 @@ QObject::connect(timer, &QTimer::timeout, [this]()
 
 Meta Object
 ===========
+ - like RTTI, but better (+ some reflection)
  - every QObject has an associated meta object
- - Q_OBJECT's offers the introspection: className(), inherits(), classInfo
+ - Q_OBJECT offers introspection features: className(), inherits(), classInfo
  - MOC, Meta Object Compiler, parses header and generates code
  - classic c++ build: class.h + class.cc -> class.o -> exec
  - qt build: same, + class.h -> moc_class.cc -> moc_class.o + class.o -> exec
@@ -132,9 +135,8 @@ qt5_use_modules(app Widgets)
 
 
 
-
-
 Q&A
 ===
  - What does QObject offer exactly, except the memory management?
  - Can a (custom) type be declared with Q_OBJECT without inheriting from QObject?
+ - What can we do with QObject::metaObject()? Is this a static method?
