@@ -135,6 +135,20 @@ qt5_use_modules(app Widgets)
 
 
 
+Containers
+==========
+ - std::vector -> QVector
+ - std::map -> QMap
+ - std::unordered_map -> QHash
+ - std::set -> N/A
+ - std::list -> QLinkedList
+ - QList: an interesting beast
+   - O(1) index lookup, amortized O(1) prepending and appending, O(n) insertion
+   - preallocates memory before/after its internal array
+   - store the element directly if sizeof(T) <= sizeof(void\*), otherwise store T\*
+
+
+
 Q&A
 ===
  - What does QObject offer exactly, except the memory management?
