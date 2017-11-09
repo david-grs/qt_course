@@ -121,5 +121,10 @@ qt5_use_modules(app Widgets)
 ```
 
 
-MetaObject
-==========
+
+
+
+Q&A
+===
+ - What does QObject offer exactly, except the memory management?
+ - Can a (custom) type be declared with Q_OBJECT without inheriting from QObject?
