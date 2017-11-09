@@ -149,6 +149,19 @@ Containers
 
 
 
+Implicit sharing
+================
+```c++
+QString foo = "foo";
+QString bar = foo;
+```
+
+ - `foo` and `bar` points to the same internal object
+ - copying any Qt object is cheap: shallow copy: atomic int + pointer copy
+ - modifying the object causes a "detach": Copy On Write (COW) mechanism
+
+
+
 Q&A
 ===
  - What does QObject offer exactly, except the memory management?
