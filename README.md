@@ -18,7 +18,7 @@ QObject
 ======= 
  - base class of many Qt classes, all widget classes - exceptions: containers, lightweight types
  - offers support for memory management, signals/slots, meta info, qobject\_cast, event loop, ...
- - every QObject has a parent -> "hierarchical and queryable object tree that organize object ownership in a natural way"
+ - every QObject has a parent: "hierarchical and queryable object tree that organize object ownership in a natural way"
 
 ```c++
 class Item : public QObject
@@ -49,11 +49,11 @@ root.dumpObjectTree(); // useful for debugging!
 ```
 
  - memory management
-   - rule of thumb: every allocated with new, except the root -> no stack, no unique_ptr, etc: can cause double-free
+   - rule of thumb: every allocated with new, except "root" widget: no stack, no smart pointer: can cause double-free
    - deleting the parent will delete recursively all children 
-   - deleting a child will unparent it -> no children on the stack!
- - named, cf QList<T> findChildren<T>(const QRegExp&)
- - most of the time widgets arent stored as member attributes: you create them (link to parent), connect them (slot), Qt will do the rest
+   - deleting a child will unparent it 
+ - named: debugging, finding widget (QList<T> findChildren<T>(const QRegExp&))
+ - widgets don't need to be stored as class attributes: you create them (link to parent) and connect their signals/slots
  - cannot be copied: name? connections? parent?
 
 
