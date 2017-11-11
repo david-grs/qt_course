@@ -21,8 +21,11 @@ QObject
  - every QObject has a parent -> "hierarchical and queryable object tree that organize object ownership in a natural way"
 
 ```c++
-struct Item : public QObject
+class Item : public QObject
 {
+    Q_OBJECT
+
+public:
     Item(QString name, QObject* parent = nullptr) :
         QObject(parent)
     {
