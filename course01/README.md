@@ -64,7 +64,7 @@ Signals/Slots
  - part of class declaration:
 
 ```c++
-class QTimer : class QObject
+class QTimer : public QObject
 {
   Q_OBJECT
 
