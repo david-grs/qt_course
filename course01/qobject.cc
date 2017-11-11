@@ -5,9 +5,12 @@
 #include <iostream>
 #include <memory>
 
-struct Item : public QObject
+class Item : public QObject
 {
-    Item(QString name, QObject* parent = nullptr) :
+    Q_OBJECT
+
+public:
+    explicit Item(QString name, QObject* parent = nullptr) :
         QObject(parent)
     {
         setObjectName(name);
