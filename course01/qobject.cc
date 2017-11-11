@@ -7,8 +7,6 @@
 
 class Item : public QObject
 {
-    Q_OBJECT
-
 public:
     explicit Item(QString name, QObject* parent = nullptr) :
         QObject(parent)
@@ -22,8 +20,16 @@ public:
     }
 };
 
+QString __attribute__ ((noinline)) CopyString(const QString& str)
+{
+  return str;
+}
+
 int main()
 {
+  QString str = "fpp";
+  QString copy = CopyString(str);
+
   QObject root;
   root.setObjectName("root");
 
