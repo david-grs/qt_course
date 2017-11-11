@@ -160,8 +160,9 @@ QString bar = foo;
 ```
 
  - `foo` and `bar` points to the same internal object
- - copying any Qt object is cheap: shallow copy: atomic int + pointer copy
- - modifying the object causes a "detach": Copy On Write (COW) mechanism
+ - copying any Qt object is very cheap (cf implicit\_sharing.cc): shallow copy: atomic int + pointer copy
+ - modifying the object causes a "detach": deep copy
+ - also called Copy On Write (COW)
 
 
 
