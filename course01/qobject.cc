@@ -20,16 +20,8 @@ public:
     }
 };
 
-QString __attribute__ ((noinline)) CopyString(const QString& str)
-{
-  return str;
-}
-
 int main()
 {
-  QString str = "fpp";
-  QString copy = CopyString(str);
-
   QObject root;
   root.setObjectName("root");
 
