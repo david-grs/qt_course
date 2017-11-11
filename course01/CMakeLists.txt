@@ -1,7 +1,8 @@
 cmake_minimum_required(VERSION 2.8)
 project(course01)
 
-add_definitions(" -g -DQT_DEBUG -DQT_CORE_LIB ")
+add_definitions("-g")
+
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 
