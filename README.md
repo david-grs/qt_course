@@ -155,8 +155,10 @@ Containers
 Implicit sharing
 ================
 ```c++
-QString foo = "foo";
-QString bar = foo;
+QStringList foo;
+foo << "foo" << "bar" << "baz";
+
+QStringList bar = foo;
 ```
 
  - `foo` and `bar` points to the same internal object
