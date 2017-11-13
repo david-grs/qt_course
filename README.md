@@ -174,6 +174,33 @@ QStringList bar = foo;
 
 
 
+QVariant
+========
+ - "acts like a union for the most common Qt data types"
+ - can hold a value from any type, like *std::any*, although offering a variant interface for most Qt types
+ - *QVariantMap*: powerful and versatile type, cf QJson
+
+```c++
+struct A { int i; };
+Q_DECLARE_METATYPE(A);
+
+{
+  QVariant v = 123;
+  int i = v.toInt();
+
+  v = "foo";
+  qDebug() << v.typeName() << "=" << v.toString();
+
+  v = QVariant::fromValue(A{1234});
+
+  if (v.canConvert<A>())
+    qDebug() << v.typeName() << "=" << v.value<A>();
+ 
+  qDebug() << v;
+}
+```
+
+
 Q&A
 ===
  - What does QObject offer exactly, except the memory management?
