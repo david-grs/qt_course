@@ -56,6 +56,12 @@ root.dumpObjectTree(); // useful for debugging!
  - widgets don't need to be stored as class attributes: you create them (link to parent) and connect their signals/slots
  - cannot be copied: name? connections? parent?
 
+Avoid classic mistakes:
+ - QObject declaration should be in a .h file
+ - All QObject should be have Q_OBJECT declared
+ - Allocate children QObject on the heap with *new*
+ - If multiple inheritance: only one inherited class can inherit from QObject, and it should be the *first one*
+
 
 
 Signals/Slots
