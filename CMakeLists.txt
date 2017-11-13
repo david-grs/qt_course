@@ -13,3 +13,6 @@ qt5_use_modules(qobject Widgets)
 
 add_executable(implicit_sharing implicit_sharing.cc)
 qt5_use_modules(implicit_sharing Widgets)
+
+add_executable(qvariant qvariant.cc)
+qt5_use_modules(qvariant Widgets)
