@@ -168,7 +168,7 @@ qDebug() << set; // prints QSet("foo", "bar")
  - QList: an interesting beast
    - O(1) index lookup, amortized O(1) prepending and appending, O(n) insertion
    - preallocates memory before/after its internal array
-   - store the element directly if sizeof(T) <= sizeof(void\*), otherwise store T\*
+   - store the element directly if sizeof(T) <= sizeof(void\*), otherwise store T\* (avoid using it in this case)
  - std::vector<std::string> -> QStringList inherits from QList<QString>, and adds join, split, filter, etc.
  - std::string -> QString (Unicode) / QByteArray (raw bytes)
 
