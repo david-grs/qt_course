@@ -13,7 +13,7 @@ Qt
 QObject
 ======= 
  - base class of many Qt classes, all widget classes - exceptions: containers, lightweight types
- - offers support for memory management, signals/slots, meta info, qobject\_cast, event loop, ...
+ - offers support for memory management, signals/slots, meta info, `qobject_cast`, event loop, ...
  - every QObject has a parent: "hierarchical and queryable object tree that organize object ownership in a natural way"
 
 ```c++
@@ -48,15 +48,15 @@ root.dumpObjectTree(); // useful for debugging!
    - rule of thumb: every allocated with new, except "root" widget: no stack, no smart pointer: can cause double-free
    - deleting the parent will delete recursively all children 
    - deleting a child will unparent it 
- - named: debugging, finding widget (QList<T> findChildren<T>(const QRegExp&))
+ - named: debugging, finding widget (`QList<T> findChildren<T>(const QRegExp&)`)
  - widgets don't need to be stored as class attributes: you create them (link to parent) and connect their signals/slots
  - cannot be copied: name? connections? parent?
 
 Classic mistakes:
- - QObject declaration should be in a .h file
- - All QObject should be have Q_OBJECT declared
- - Allocate children QObject on the heap with *new*, not on stack or with smart pointer
- - If multiple inheritance: only one inherited class can inherit from QObject, and it should be the *first one*
+ - `QObject` declaration should be in a .h file
+ - All QObject should be have `Q_OBJECT` declared
+ - Allocate children QObject on the heap with new`, not on stack or with smart pointer
+ - If multiple inheritance: only one inherited class can inherit from `QObject`, and it should be the *first one*
 
 
 
@@ -140,18 +140,18 @@ QSet<QString> set = list.toSet();
 qDebug() << set; // prints QSet("foo", "bar")
 ```
 
- - std::vector -> QVector
- - std::map -> QMap
- - std::unordered_map -> QHash
- - std::set -> N/A
- - std::list -> QLinkedList
- - QList: an interesting beast
+ - `std::vector` -> QVector`
+ - `std::map` -> QMap`
+ - `std::unordered_map` -> `QHash`
+ - `std::set` -> N/A
+ - `std::list` -> `QLinkedList`
+ - `QList`: an interesting beast
    - O(1) index lookup, amortized O(1) prepending and appending, O(n) insertion
    - preallocates memory before/after its internal array
    - store the element directly if sizeof(T) <= sizeof(void\*), otherwise store T\* (avoid using it in this case)
- - std::vector<std::string> -> QStringList inherits from QList<QString>, and adds join, split, filter, etc.
- - std::string -> QString (Unicode) / QByteArray (raw bytes)
- - std::string_view -> QStringView (5.10)
+ - `std::vector<std::string>` -> `QStringList` inherits from `QList<QString>`, and adds join, split, filter, etc.
+ - `std::string` -> `QString` (Unicode) / `QByteArray` (raw bytes)
+ - `std::string_view` -> `QStringView` (5.10)
 
 
 
@@ -175,26 +175,40 @@ QVariant
 ========
  - "acts like a union for the most common Qt data types"
  - can hold a value from any type, like *std::any*, although offering a variant interface for most Qt types
- - *QVariantMap*: powerful and versatile type, cf QJson
+
+```c++
+{
+  QVariant v = 123;
+  int i = v.toInt();
+
+  v = "foo";
+
+  // prints QString = "foo"
+  qDebug() << v.typeName() << "=" << v.toString(); 
+}
+```
 
 ```c++
 struct A { int i; };
 Q_DECLARE_METATYPE(A);
 
 {
-  QVariant v = 123;
-  int i = v.toInt();
-
-  v = "foo";
-  qDebug() << v.typeName() << "=" << v.toString();
-
   v = QVariant::fromValue(A{1234});
 
   if (v.canConvert<A>())
+  {
+    // prints A = 1234
     qDebug() << v.typeName() << "=" << v.value<A>();
+  }
  
+  prints QVariant(A, 1234)
   qDebug() << v;
 }
+```
+
+ - `QVariantMap`: typedef for `QMap<QString, QVariant>` powerful and versatile type
+
+```c++
 ```
 
 
