@@ -119,8 +119,6 @@ add_executable(app main.cc widget.cc)
 
 qt5_use_modules(app Widgets)
 ```
- 
-
 
 
 
