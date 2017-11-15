@@ -209,6 +209,18 @@ Q_DECLARE_METATYPE(A);
  - `QVariantMap`: typedef for `QMap<QString, QVariant>` powerful and versatile type
 
 ```c++
+{
+  QVariantMap m;
+  m["id"] = 2;
+  m["name"] = "foo";
+  m["value"] = QStringList() << "bar" << "baz";
+
+  // prints QMap(("id", QVariant(int, 2)) ("name", QVariant(QString, "foo")) ("value", QVariant(QStringList, ("bar", "baz"))))  
+  qDebug() << m;
+
+  for (const QString& str : m["value"].toStringList())
+    qDebug() << str;
+}
 ```
 
 
