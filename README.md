@@ -140,8 +140,8 @@ QSet<QString> set = list.toSet();
 qDebug() << set; // prints QSet("foo", "bar")
 ```
 
- - `std::vector` -> QVector`
- - `std::map` -> QMap`
+ - `std::vector` -> `QVector`
+ - `std::map` -> `QMap`
  - `std::unordered_map` -> `QHash`
  - `std::set` -> N/A
  - `std::list` -> `QLinkedList`
@@ -174,7 +174,7 @@ QStringList bar = foo;
 QVariant
 ========
  - "acts like a union for the most common Qt data types"
- - can hold a value from any type, like *std::any*, although offering a variant interface for most Qt types
+ - can hold a value from any type, like `std::any`, although offering a variant interface for most Qt types
 
 ```c++
 {
@@ -216,8 +216,8 @@ Q_DECLARE_METATYPE(A);
 Meta Object
 ===========
  - like RTTI, but better (+ some reflection)
- - every QObject has an associated meta object
- - Q_OBJECT offers introspection features: className(), inherits(), classInfo
+ - every `QObject` has an associated meta object
+ - `Q_OBJECT` offers introspection features: className(), inherits(), classInfo
  - MOC, Meta Object Compiler, parses header and generates code
  - classic c++ build: class.h + class.cc -> class.o -> exec
  - qt build: same, + class.h -> moc_class.cc -> moc_class.o + class.o -> exec
