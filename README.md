@@ -146,6 +146,20 @@ qt5_use_modules(app Widgets)
 
 Containers
 ==========
+ - different philosophy than STL: ease of use, syntax is not just sugar
+
+```c++
+QList<QString> list;
+list << "foo" << "bar" << "bar";
+
+if (list.contains("foo"))
+   qDebug() << list; // prints ("foo", "bar", "bar")
+
+QSet<QString> set = list.toSet();
+
+qDebug() << set; // prints QSet("foo", "bar")
+```
+
  - std::vector -> QVector
  - std::map -> QMap
  - std::unordered_map -> QHash
