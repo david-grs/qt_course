@@ -7,7 +7,7 @@ Qt
    - inheritance rather than templates
    - Qt version of containers & algorithms
    - memory management: you are going to use the `new` operator
-
+   - ABI & API compatibility
 
 
 QObject
