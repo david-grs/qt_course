@@ -156,6 +156,8 @@ Containers
    - preallocates memory before/after its internal array
    - store the element directly if sizeof(T) <= sizeof(void\*), otherwise store T\*
  - std::vector<std::string> -> QStringList inherits from QList<QString>, and adds join, split, filter, etc.
+ - std::string -> QString (Unicode) / QByteArray (raw bytes)
+
 
 
 Implicit sharing
