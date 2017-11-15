@@ -1,16 +1,12 @@
-Qt Concepts
-  - QObject 
-  - Signals/slots
-  - Meta Objects
-  - COW/implicit sharing
-  - QVariant 
-  - Qt Event Loop
-  - MVC
-
 Qt
 ==
- - originally GUI only
+ - originally GUI only: best cross-platform GUI lib in C++
  - gained so much popularity that many developers use it for non-GUI stuff: Core, Xml, Json, Networking, Databases, Multimedia, ...
+ - philosophy very different than STL/Boost
+   - syntax is not just sugar: easy of use
+   - inheritance rather than templates
+   - Qt version of containers & algorithms
+   - memory management: you are going to use the `new` operator
 
 
 
