@@ -34,8 +34,7 @@ public:
     }
 };
 
-QObject root;
-root.setObjectName("root");
+Item root("root");
 
 Item* foo = new Item("foo", &root);
 Item* bar = new Item("bar", foo);
