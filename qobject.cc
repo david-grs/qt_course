@@ -1,15 +1,12 @@
 #include "qobject.h"
 
-#include <iostream>
-#include <memory>
-
 int main()
 {
-  QObject root;
-  root.setObjectName("root");
+  Item root("root");
 
   Item* foo = new Item("foo", &root);
   Item* bar = new Item("bar", foo);
+  Item* baz = new Item("baz", &root);
   
   root.dumpObjectTree();
 
