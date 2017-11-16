@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 project(course01)
 
-add_definitions("-g")
+add_definitions("-g -std=c++14")
 
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
@@ -16,3 +16,6 @@ qt5_use_modules(implicit_sharing Widgets)
 
 add_executable(qvariant qvariant.cc)
 qt5_use_modules(qvariant Widgets)
+
+add_executable(signalslot signalslot.cc)
+qt5_use_modules(signalslot Widgets)
